@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext.js';
 import '../styles/Auth.css';
 
 export const AdminLoginPage = () => {
-  const [email, setEmail] = useState('admin@example.com');
+  const [email, setEmail] = useState('admin@careconnect.com');
   const [password, setPassword] = useState('admin123');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -47,7 +47,7 @@ export const AdminLoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={loading}
-                placeholder="admin@example.com"
+                placeholder="admin@careconnect.com"
               />
             </div>
 

@@ -2,6 +2,7 @@ import { sendSuccessResponse, sendErrorResponse } from '../utils/helpers.js';
 import * as DonationModel from '../models/Donation.js';
 import * as RequestModel from '../models/Request.js';
 import * as UserModel from '../models/User.js';
+import * as NotificationModel from '../models/Notification.js';
 
 export const acceptRequest = async (req, res, next) => {
   try {
@@ -23,6 +24,16 @@ export const acceptRequest = async (req, res, next) => {
 
     // Update request status to accepted
     await RequestModel.updateRequestStatus(req.params.requestId, 'accepted');
+
+    // Create notification for caretaker
+    const donor = await UserModel.getUserById(req.user.id);
+    await NotificationModel.createNotification({
+      userId: request.user_id || request.created_by,
+      type: 'request_accepted',
+      message: `${donor.name} accepted your request: "${request.title}"`,
+      relatedId: req.params.requestId,
+      relatedType: 'request',
+    });
 
     return sendSuccessResponse(res, 201, 'Request accepted', { donationId });
   } catch (error) {

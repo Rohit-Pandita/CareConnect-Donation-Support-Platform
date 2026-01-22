@@ -2,6 +2,7 @@ import { sendSuccessResponse, sendErrorResponse } from '../utils/helpers.js';
 import { createRequestValidation } from '../utils/validators.js';
 import * as RequestModel from '../models/Request.js';
 import * as DonationModel from '../models/Donation.js';
+import * as CommentModel from '../models/Comment.js';
 
 export const createRequest = async (req, res, next) => {
   try {
@@ -61,7 +62,8 @@ export const getRequestById = async (req, res, next) => {
     }
 
     const donations = await DonationModel.getDonationsByRequest(req.params.id);
-    return sendSuccessResponse(res, 200, 'Request fetched', { ...request, donations });
+    const comments = await CommentModel.getCommentsByRequest(req.params.id);
+    return sendSuccessResponse(res, 200, 'Request fetched', { ...request, donations, comments });
   } catch (error) {
     next(error);
   }
@@ -103,7 +105,7 @@ export const deleteRequest = async (req, res, next) => {
       return sendErrorResponse(res, 404, 'Request not found');
     }
 
-    if (request.created_by !== req.user.id && req.user.role !== 'admin') {
+    if (request.user_id !== req.user.id && req.user.role !== 'admin') {
       return sendErrorResponse(res, 403, 'Not authorized to delete this request');
     }
 
@@ -123,7 +125,7 @@ export const updateRequestStatus = async (req, res, next) => {
       return sendErrorResponse(res, 404, 'Request not found');
     }
 
-    if (request.created_by !== req.user.id && req.user.role !== 'admin') {
+    if (request.user_id !== req.user.id && req.user.role !== 'admin') {
       return sendErrorResponse(res, 403, 'Not authorized');
     }
 

@@ -56,11 +56,11 @@ export const DonorDashboardPage = () => {
   };
 
   const handleAcceptRequest = (requestId) => {
-    navigate(`/requests/${requestId}`);
+    navigate(`/request/${requestId}`);
   };
 
   const handleViewDonation = (requestId) => {
-    navigate(`/requests/${requestId}`);
+    navigate(`/request/${requestId}`);
   };
 
   return (

@@ -66,9 +66,9 @@ export const commentService = {
 
 // Donations endpoints
 export const donationService = {
-  acceptRequest: (requestId, donorId) => api.post(`/donations`, { requestId, donorId }),
-  getDonations: (donorId) => api.get(`/donations`, { params: { donorId } }),
-  updateDonationStatus: (requestId, donationId, status) => api.patch(`/donations/${donationId}/status`, { status }),
+  acceptRequest: (requestId) => api.post(`/donations/requests/${requestId}/accept`),
+  getDonations: () => api.get(`/donations`),
+  updateDonationStatus: (donationId, status) => api.patch(`/donations/${donationId}/status`, { status }),
   getCaretakerContact: (requestId) => api.get(`/donations/requests/${requestId}/caretaker-contact`),
 };
 

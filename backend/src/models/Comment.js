@@ -13,7 +13,7 @@ export const createComment = async (commentData) => {
 // Get comments by request ID
 export const getCommentsByRequest = async (requestId) => {
   const [rows] = await pool.query(
-    `SELECT c.*, u.name, u.role 
+    `SELECT c.*, u.name as full_name, u.role 
      FROM comments c 
      JOIN users u ON c.user_id = u.id 
      WHERE c.request_id = ? 

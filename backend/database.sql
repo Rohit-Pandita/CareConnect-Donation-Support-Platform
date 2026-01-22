@@ -94,3 +94,8 @@ CREATE TABLE admin_logs (
   INDEX (admin_id),
   INDEX (created_at)
 );
+
+-- Create default admin user
+INSERT INTO users (full_name, email, password, phone, role) 
+VALUES ('Admin', 'admin@careconnect.com', '$2a$10$dXf50c/OaREOq0ot8K4RaeZyWJLVQQ.Ff1.sLaLr6Qgw1.PlMyGEC', '1234567890', 'admin')
+ON DUPLICATE KEY UPDATE id=id;

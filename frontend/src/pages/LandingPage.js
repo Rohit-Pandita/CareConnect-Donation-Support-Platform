@@ -66,12 +66,6 @@ export const LandingPage = () => {
               </div>
             </div>
           </div>
-
-          {/* Browse as Guest */}
-          <div className="guest-section">
-            <p>Want to browse requests first?</p>
-            <Link to="/browse" className="btn btn-outline">Browse Requests</Link>
-          </div>
         </section>
 
         {/* Footer */}

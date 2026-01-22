@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS admin_logs (
 
 -- Create default admin user
 INSERT INTO users (name, email, password, phone, role) 
-VALUES ('Admin', 'admin@careconnect.com', '$2a$10$1234567890123456789012345678901234567890', '1234567890', 'admin')
+VALUES ('Admin', 'admin@careconnect.com', '$2a$10$dXf50c/OaREOq0ot8K4RaeZyWJLVQQ.Ff1.sLaLr6Qgw1.PlMyGEC', '1234567890', 'admin')
 ON DUPLICATE KEY UPDATE id=id;
 
 -- Create indexes for better query performance

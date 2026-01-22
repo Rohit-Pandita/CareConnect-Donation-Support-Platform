@@ -54,7 +54,7 @@ export const BrowsePage = () => {
   };
 
   const handleViewDetails = (requestId) => {
-    navigate(`/requests/${requestId}`);
+    navigate(`/request/${requestId}`);
   };
 
   return (

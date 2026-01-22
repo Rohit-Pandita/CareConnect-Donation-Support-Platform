@@ -117,6 +117,18 @@ export const RequestDetailPage = ({ socket }) => {
                 )}
               </div>
             )}
+
+            {user?.role === 'caretaker' && (
+              <div style={{ marginTop: '20px', padding: '15px', backgroundColor: '#f0f8ff', borderRadius: '4px' }}>
+                <h3>📋 Donation Status</h3>
+                <p><strong>Status:</strong> {request.status}</p>
+                {request.donations && request.donations.length > 0 && (
+                  <div style={{ marginTop: '10px' }}>
+                    <p><strong>Accepted by:</strong> {request.donations.length} donor(s)</p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -125,6 +137,8 @@ export const RequestDetailPage = ({ socket }) => {
           comments={request.comments || []}
           onCommentAdded={fetchRequest}
           socket={socket}
+          isAccepted={isAccepted}
+          isCaretikerOwner={user?.id === request.user_id && user?.role === 'caretaker'}
         />
       </div>
     </div>
